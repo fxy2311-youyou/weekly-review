@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我终于不再用「这一周好忙」复盘自己了</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #F1752D;
+      --orange-deep: #D45A1A;
+      --orange-soft: #FFE0CC;
+      --dark: #1A1A2E;
+      --warm-white: #FFF8F0;
+      --cream: #FFF8F0;
+      --cream-dark: #faf6eb;
+      --ink: #1A1A2E;
+      --ink-light: #4A4A5A;
+      --ink-faint: #8A8A9A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--orange-soft);
+      color: var(--ink);
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ========== HERO — 居中单栏 ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-text .label-caps {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+      color: var(--ink-faint);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-text h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      line-height: 1.2;
+    }
+
+    .hero-text h1 .hl {
+      color: var(--orange);
+    }
+
+    .hero-text .subtitle {
+      font-size: 1.2rem;
+      color: var(--ink-light);
+      margin-top: 1.5rem;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.9;
+    }
+
+    /* ========== Section共用 ========== */
+    .section { padding: clamp(80px, 12vh, 160px) 0; }
+    .section--alt { background: var(--cream-dark); }
+
+    .section-header { margin-bottom: clamp(40px, 6vw, 80px); }
+    .section-number {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--orange);
+      opacity: 0.4;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .section-title {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 900;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+    }
+
+    /* ========== Section 2: Pain — 对称双栏 ========== */
+    .section-pain {
+      min-height: 70vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    .pain-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(48px, 8vw, 100px);
+      background: var(--cream);
+    }
+    .pain-left h2 {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      line-height: 1.4;
+    }
+    .pain-left h2 .hl { color: var(--orange); }
+    .pain-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(48px, 8vw, 100px);
+      background: var(--cream-dark);
+    }
+    .pain-right p {
+      font-size: 1.15rem;
+      color: var(--ink-light);
+      line-height: 2;
+      margin-bottom: 1rem;
+    }
+    .pain-right .quote-block {
+      position: relative;
+      padding: 20px 24px 20px 36px;
+      margin-top: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .pain-right .quote-block::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 60%;
+      background: var(--orange);
+      border-radius: 2px;
+    }
+    .pain-right .quote-block p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0;
+      line-height: 1.7;
+    }
+
+    /* ========== Section 3: Step1 — Sticky侧栏 ========== */
+    .layout-sticky {
+      display: grid;
+      grid-template-columns: 0.35fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: start;
+    }
+    .sticky-side {
+      position: sticky;
+      top: 100px;
+    }
+    .sticky-side .big-num {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(4rem, 10vw, 7rem);
+      font-weight: 900;
+      color: var(--orange);
+      opacity: 0.12;
+      line-height: 0.85;
+    }
+    .sticky-side h2 {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 900;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      margin-top: 0.5rem;
+    }
+    .content-scroll p {
+      font-size: 1.15rem;
+      color: var(--ink-light);
+      line-height: 2;
+      margin-bottom: 1.5rem;
+    }
+    .insight-card {
+      background: var(--orange-soft);
+      border-radius: 16px;
+      padding: 24px 28px;
+      border-left: 4px solid var(--orange);
+    }
+    .insight-card p {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 0;
+      line-height: 1.7;
+    }
+
+    /* ========== Section 4: Step2 — Step引导流程 ========== */
+    .step-flow {
+      display: flex;
+      flex-direction: column;
+      padding-left: 24px;
+      position: relative;
+      max-width: 700px;
+    }
+    .step-flow::before {
+      content: '';
+      position: absolute;
+      left: 21px;
+      top: 24px;
+      bottom: 24px;
+      width: 2px;
+      border-left: 2px dashed rgba(241, 117, 45, 0.3);
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: clamp(32px, 4vw, 56px);
+      position: relative;
+    }
+    .step-item:last-child { margin-bottom: 0; }
+    .step-num {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .step-body h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .step-body p {
+      font-size: 1.05rem;
+      color: var(--ink-light);
+      line-height: 1.8;
+    }
+
+    /* ========== Section 5: Step3 — 三卡片网格 ========== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 2.5vw, 32px);
+    }
+    .number-card {
+      position: relative;
+      padding: 32px 24px;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+      transition: transform 0.3s ease;
+    }
+    .number-card:hover { transform: translateY(-4px); }
+    .number-card .card-number {
+      position: absolute;
+      top: -12px;
+      right: 8px;
+      font-family: 'Fraunces', serif;
+      font-size: 5.5rem;
+      font-weight: 900;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .number-card:nth-child(1) .card-number { color: rgba(241, 117, 45, 0.1); }
+    .number-card:nth-child(2) .card-number { color: rgba(26, 26, 46, 0.06); }
+    .number-card:nth-child(3) .card-number { color: rgba(241, 117, 45, 0.08); }
+    .number-card h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .number-card p {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      position: relative;
+    }
+
+    /* ========== Section 6: 三源交叉 — 全宽橙色面板 ========== */
+    .section-orange {
+      background: var(--orange);
+      color: #fff;
+      padding: clamp(80px, 12vh, 160px) 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-orange .bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Fraunces', serif;
+      font-size: clamp(8rem, 20vw, 16rem);
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.1);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .orange-content {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .orange-content p {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 700;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      line-height: 1.9;
+      color: #fff;
+    }
+    .orange-content .sub {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-weight: 400;
+      font-size: 0.95rem;
+      opacity: 0.8;
+      margin-top: 2rem;
+      line-height: 1.8;
+      color: #fff;
+    }
+
+    /* ========== Section 7: 六维 — 卡片网格 2x3 ========== */
+    .six-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .six-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 22px;
+      border-left: 4px solid var(--orange);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease;
+    }
+    .six-card:hover { transform: translateY(-3px); }
+    .six-card:nth-child(2) { border-left-color: var(--dark); }
+    .six-card:nth-child(3) { border-left-color: var(--orange-deep); }
+    .six-card:nth-child(4) { border-left-color: var(--dark); }
+    .six-card:nth-child(5) { border-left-color: var(--orange); }
+    .six-card:nth-child(6) { border-left-color: var(--orange-deep); }
+    .six-card .card-emoji { font-size: 1.6rem; margin-bottom: 12px; }
+    .six-card h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .six-card p {
+      font-size: 0.98rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+
+    /* ========== Section 8: 结尾 ========== */
+    .section-ending { padding: clamp(80px, 12vh, 160px) 0; }
+    .ending-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .ending-quote {
+      border-top: 4px solid var(--orange);
+      border-bottom: 4px solid var(--orange);
+      padding: 44px 32px;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .ending-quote p {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1.8;
+      color: var(--ink);
+    }
+    .ending-body p {
+      font-size: 1rem;
+      color: var(--ink-light);
+      line-height: 2;
+      margin-bottom: 1.5rem;
+    }
+    .keyword-hl {
+      background: rgba(241, 117, 45, 0.15);
+      padding: 0.1em 0.4em;
+      border-radius: 6px;
+      display: inline;
+      box-decoration-break: clone;
+    }
+
+    /* ========== Footer ========== */
+    .footer {
+      padding: clamp(40px, 6vh, 80px) 0;
+      text-align: center;
+    }
+    .footer img {
+      height: 28px;
+      opacity: 0.5;
+    }
+    .footer p {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      margin-top: 12px;
+    }
+
+    /* ========== Scroll Reveal ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    .reveal-d5 { transition-delay: 0.5s; }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 900px) {
+      .hero { min-height: auto; padding: 4rem 1.5rem 3rem; }
+      .section-pain { grid-template-columns: 1fr; min-height: auto; }
+      .layout-sticky { grid-template-columns: 1fr; }
+      .sticky-side { position: static; margin-bottom: 2rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .six-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      body { font-size: 15px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HERO — 居中单栏 ====== -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="label-caps reveal">Weekly Review · Cola Skill</span>
+      <h1 class="reveal reveal-d1">我终于不再用<br>「<span class="hl">这一周好忙</span>」<br>复盘自己了</h1>
+      <p class="subtitle reveal reveal-d2">作为一个 OPC，我每天都有很多事情在同时发生。没有外界监督的时候，很容易觉得自己活得乱乱的——好像一直在动，但说不清这一周到底有没有往想去的方向走。</p>
+    </div>
+  </section>
+
+  <!-- ====== PAIN POINT — 对称双栏 ====== -->
+  <section class="section-pain reveal">
+    <div class="pain-left">
+      <h2>满，不等于重要。<br><span class="hl">忙，也不等于<br>在前进。</span></h2>
+    </div>
+    <div class="pain-right">
+      <p>做完这个，接着做那个。消息要回，课程要上，内容要发，产品要改，家里的事也不会暂停。</p>
+      <p>可是一回头看日历，日程又排得很满。</p>
+      <div class="quote-block">
+        <p>所以我最近用 Cola 给自己做了一个每周复盘 Skill。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== STEP 1: 口喷 — Sticky侧栏 ====== -->
+  <section class="section">
+    <div class="container">
+      <div class="layout-sticky">
+        <div class="sticky-side reveal">
+          <span class="big-num">01</span>
+          <h2>先口喷，<br>把感受说出来</h2>
+        </div>
+        <div class="content-scroll">
+          <p class="reveal">每周开始复盘时，Cola 不会先冲进日历里统计小时数。它会先问我：这周做了什么？什么让我很有劲，什么又让我很累？哪些事情卡住了？下周最想推进什么？</p>
+          <p class="reveal reveal-d1">我就想到哪说到哪。</p>
+          <p class="reveal reveal-d2">因为很多真正影响一周的东西，不会出现在日历里：一个项目带来的兴奋和压力、反复纠结的决定、没有被记录的沟通、觉得自己被反馈牵着走的时刻。</p>
+          <div class="insight-card reveal reveal-d3">
+            <p>口喷记录的是：我怎么经历这一周。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== STEP 2: 日历 — Step引导流程 ====== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-number">02</span>
+        <h2 class="section-title">查日历，看真实发生了什么</h2>
+      </div>
+      <div class="step-flow">
+        <div class="step-item reveal">
+          <span class="step-num">1</span>
+          <div class="step-body">
+            <h3>时间去了哪里</h3>
+            <p>日历不能解释动机，但它很诚实——它会告诉你：你把时间花在哪里。</p>
+          </div>
+        </div>
+        <div class="step-item reveal reveal-d1">
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <h3>收入有没有被挤掉</h3>
+            <p>直接收入活动是否被其他事情蚕食？身体和恢复有没有位置？</p>
+          </div>
+        </div>
+        <div class="step-item reveal reveal-d2">
+          <span class="step-num">3</span>
+          <div class="step-body">
+            <h3>长期项目的真实投入</h3>
+            <p>有时觉得"什么正事都没做"，日历却提醒你课程、工作和运动一直都在。有时觉得一直在做重要的事，日历也会提醒你——有些时间被零碎的回应切走了。</p>
+          </div>
+        </div>
+      </div>
+      <div class="insight-card reveal reveal-d3" style="max-width: 700px; margin-top: 2.5rem;">
+        <p>日历记录的是：我实际上做了什么。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== STEP 3: OB — 三卡片网格 ====== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-number">03</span>
+        <h2 class="section-title">查 OB 里的会议记录和笔记，看成果和长期方向</h2>
+      </div>
+      <div class="features-grid">
+        <div class="number-card reveal">
+          <span class="card-number">01</span>
+          <h3>确认长期接续</h3>
+          <p>这一步不是为了把笔记再读一遍，而是为了确认：这一周做的事，有没有接上更长期的目标。</p>
+        </div>
+        <div class="number-card reveal reveal-d1">
+          <span class="card-number">02</span>
+          <h3>发现隐藏价值</h3>
+          <p>一个看起来只是"忙了一天"的项目，可能正在积累案例、作品、内容资产或未来合作机会。</p>
+        </div>
+        <div class="number-card reveal reveal-d2">
+          <span class="card-number">03</span>
+          <h3>识别空转</h3>
+          <p>一件看上去很努力的事，也可能没有真正推进任何结果。OB 记录的是：我正在走向哪里。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== 三源交叉 — 全宽橙色面板 ====== -->
+  <section class="section-orange">
+    <span class="bg-text">GAP</span>
+    <div class="orange-content reveal">
+      <p>我实际做的事、我以为自己在做的事、和我真正想走的方向——<br>中间差了什么。</p>
+      <p class="sub">三份记录放在一起，才看得见真正的 gap。<br>碰到关键空白时，它会反过来问我问题——最多问三轮，因为复盘不是审讯。</p>
+    </div>
+  </section>
+
+  <!-- ====== 六维判断 — 卡片网格 ====== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-number">04</span>
+        <h2 class="section-title">从六个维度帮我判断这一周</h2>
+      </div>
+      <div class="six-grid">
+        <div class="six-card reveal">
+          <div class="card-emoji">💰</div>
+          <h3>收入结构</h3>
+          <p>稳定收入有没有被照看？长期投入有没有可能变成下一笔收入？</p>
+        </div>
+        <div class="six-card reveal reveal-d1">
+          <div class="card-emoji">🧭</div>
+          <h3>长期方向</h3>
+          <p>这周有没有积累作品、受众、方法或真正的能力？</p>
+        </div>
+        <div class="six-card reveal reveal-d2">
+          <div class="card-emoji">🧠</div>
+          <h3>注意力与心理负荷</h3>
+          <p>我是在主动推进，还是被高反馈、消息和数据牵着走？</p>
+        </div>
+        <div class="six-card reveal reveal-d3">
+          <div class="card-emoji">👨‍👩‍👧</div>
+          <h3>关系和家庭</h3>
+          <p>重要的人，是不是只等到工作剩下时间才轮得到？</p>
+        </div>
+        <div class="six-card reveal reveal-d4">
+          <div class="card-emoji">🏃‍♀️</div>
+          <h3>身体和恢复</h3>
+          <p>我是真的在恢复，还是只是停止工作但继续消耗？</p>
+        </div>
+        <div class="six-card reveal reveal-d5">
+          <div class="card-emoji">⚙️</div>
+          <h3>执行系统</h3>
+          <p>下一个动作清不清楚？计划有没有尊重现实的时间和约束？</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== 结尾 ====== -->
+  <section class="section-ending">
+    <div class="container">
+      <div class="ending-wrap">
+        <div class="ending-quote reveal">
+          <p>我想要的不是更满的生活</p>
+        </div>
+        <div class="ending-body">
+          <p class="reveal">我做这个 Skill，不是为了把自己管理得更狠。</p>
+          <p class="reveal reveal-d1">我只是想在每周结束时，有一个人帮我把感受、时间和长期目标放在一起看一遍。让我知道哪些投入值得继续，哪些边界该重新划，下一周最需要推进什么。</p>
+          <p class="reveal reveal-d2">我现在更在意的，不是下周能不能做更多，而是有没有把不必要的精力，从<span class="keyword-hl">反复看数据、低价值维护和无目的刷手机</span>里拿回来，留给真正重要的事。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Footer ====== -->
+  <footer class="footer">
+    <h2 style="font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 1.5rem; color: var(--orange); margin-bottom: 0.5rem;"><a href="https://colaos.ai" target="_blank" style="color: var(--orange); text-decoration: none;">Cola - Your AI Sidekick</a></h2>
+    <p style="font-size: 0.9rem; color: var(--ink-faint);">Evolving with you, endlessly</p>
+  </footer>
+
+  <!-- ====== Scroll Reveal JS ====== -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
