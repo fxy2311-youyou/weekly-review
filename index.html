@@ -421,6 +421,56 @@
       box-decoration-break: clone;
     }
 
+    /* ========== CTA Section ========== */
+    .section-cta {
+      padding: clamp(60px, 10vh, 120px) 0;
+      text-align: center;
+      background: var(--cream);
+    }
+    .cta-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .cta-title {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+    .cta-desc {
+      font-size: 1.1rem;
+      color: var(--ink-light);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .cta-btn:hover {
+      background: var(--orange-deep);
+      transform: translateY(-2px);
+    }
+    .cta-small {
+      font-size: 0.85rem;
+      color: var(--ink-faint);
+      margin-top: 1.5rem;
+      line-height: 1.7;
+    }
+    .cta-link {
+      color: var(--ink-faint);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
     /* ========== Footer ========== */
     .footer {
       padding: clamp(40px, 6vh, 80px) 0;
@@ -640,6 +690,18 @@
           <p class="reveal reveal-d1">我只是想在每周结束时，有一个人帮我把感受、时间和长期目标放在一起看一遍。让我知道哪些投入值得继续，哪些边界该重新划，下一周最需要推进什么。</p>
           <p class="reveal reveal-d2">我现在更在意的，不是下周能不能做更多，而是有没有把不必要的精力，从<span class="keyword-hl">反复看数据、低价值维护和无目的刷手机</span>里拿回来，留给真正重要的事。</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA ====== -->
+  <section class="section-cta">
+    <div class="container">
+      <div class="cta-wrap">
+        <p class="cta-title reveal">现在就试试</p>
+        <p class="cta-desc reveal reveal-d1">在 Cola 那里一句话就能安装，说「帮我装周复盘助手」即可。</p>
+        <a href="#" class="cta-btn reveal reveal-d2">开始使用</a>
+        <p class="cta-small reveal reveal-d3">尝试用更结构化的方式，引导你做一次真正有价值的周复盘<br><a href="https://colaskill.com/weekly-review-skill" class="cta-link" target="_blank">详情：https://colaskill.com/weekly-review-skill</a></p>
       </div>
     </div>
   </section>
